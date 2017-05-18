@@ -1,0 +1,20 @@
+{
+"username": "Clyde",
+"text": "I am Clyde, this is an example webhook message.",
+"icon_url": "https://discordapp.com/assets/f78426a064bc9dd24847519259bc42af.png",
+"attachments": [{
+"author_name": "Clyde",
+"author_icon": "https://discordapp.com/assets/f78426a064bc9dd24847519259bc42af.png",
+"color": "#ff0000",
+"title": "Clyde's Embed",
+"text": "This is text. This text is in Clyde's embed.",
+"fields": [{
+"title": "Clyde's Embed's Field",
+"value": "Clyde's Embed's Field's Value."
+}],
+"footer_icon": "https://discordapp.com/assets/f78426a064bc9dd24847519259bc42af.png",
+"footer": "Clyde's Embed's Footer"
+}]
+}
+
+source: https://www.reddit.com/r/discordapp/comments/56ktov/discord_webhook_message_maker_json/
