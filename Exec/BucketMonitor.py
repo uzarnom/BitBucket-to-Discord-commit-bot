@@ -17,6 +17,8 @@ BIT_BUCKET_URL = "https://api.bitbucket.org/1.0/repositories/[user who created]/
 bit_bucket_username = "user"
 bit_bucket_password = "password"
 
+
+
 Bit = BitGet(BIT_BUCKET_URL)
 Dis = DisPost(DISCORD_URL)
 
@@ -31,35 +33,39 @@ file.close()
 
 
 
+
 #get data from bitbucket
 data = Bit.getCutData(bit_bucket_username, bit_bucket_password)
+dataSize = len(data) -1 ;
+
+#print(dataSize)
 
 #check if last post was latest
-if(data[14]["raw_node"] == lastDoneNode):
+if(data[dataSize]["raw_node"] == lastDoneNode):
     sys.exit(0)
 
 #check how many posts need to be made
 count = 0
-for i in range(14, -1, -1): #this is bad, could look nicer
+for i in range(dataSize, -1, -1): #this is bad, could look nicer
     if(data[i]["raw_node"] != lastDoneNode):
         count += 1
     else:
         break
 
-numOfPosts = 14 - count +1 #better name, this is post to start from
+numOfPosts = dataSize - count +1 #better name, this is post to start from
 
 
 #process json send message for everynew node
-for i in range(numOfPosts, 15, 1):
-    print("Sending message: " + data[i]["raw_node"])
-    print(data[i]["message"])
-    print(data[i]["raw_author"])
+for i in range(numOfPosts, dataSize+1, 1):
+    #print("Sending message: " + data[i]["raw_node"])
+    #print(data[i]["message"])
+    #print(data[i]["raw_author"])
     Auth = data[i]["raw_author"]
     Nod = data[i]["raw_node"]
     Mes = data[i]["message"]
     Dis.sendMessage(Auth, Nod, Mes)
 
 #we have come here because no old node
-saveNode(data[14]["raw_node"])
+saveNode(data[dataSize]["raw_node"])
 
 
